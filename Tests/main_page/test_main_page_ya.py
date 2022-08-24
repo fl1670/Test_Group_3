@@ -15,3 +15,9 @@ class TestMainPageYa(TestBase):
     def test_temp_3(self):
         self.APP.main_page.send_keys_in_search_input('Погода')
         self.APP.main_page.click_btn_submit()
+
+    def test_get_weather(self):
+        test_main_page = self.APP.main_page
+        text_weather = test_main_page.get_text_weather().replace('°', '')
+
+        assert int(text_weather) > 0

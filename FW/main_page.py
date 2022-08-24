@@ -10,3 +10,7 @@ class MainPage(AnyPage):
 
     def click_btn_submit(self):
         self.get_driver().find_element(By.XPATH, '//*[@type="submit"]').click()
+
+    def get_text_weather(self):
+        return self.get_driver().find_element(By.XPATH, '//div[@class="informers3"]/a[1]').text
+
