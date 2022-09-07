@@ -3,6 +3,7 @@ from FW.main_page import MainPage
 from FW.search.search import Search
 from FW.web_driver import WebDriver
 from FW.API.token.token import Token
+from data.settings import Settings
 
 
 class ApplicationManager:
@@ -14,6 +15,7 @@ class ApplicationManager:
         self.driver = None
 
     def __init__(self):
+        self.settings = Settings()
         self.web_driver = WebDriver()
         self.main_page = MainPage(self)
         self.search = Search(self)
