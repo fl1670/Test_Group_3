@@ -1,3 +1,4 @@
+import allure
 import requests as requests
 
 from FW.API.api_base_fw import ApiBaseFw
@@ -5,6 +6,7 @@ from FW.API.api_base_fw import ApiBaseFw
 
 class Token(ApiBaseFw):
 
+    @allure.step('Получение токена пользователя')
     def get_token(self, user='test_user09'):
 
         url = f'{self.manager.settings.url_auth}/connect/token'
