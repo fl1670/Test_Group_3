@@ -1,13 +1,17 @@
 import allure
+import pytest
 
-from Tests.API.api_base import ApiBase
+from tests.API.api_base import ApiBase
 
 
-@allure.feature('Api')
+@allure.epic('Api')
+@allure.feature('Token')
 @allure.story('Get token')
 class TestToken(ApiBase):
 
     @allure.title('Получение токена (проверка access_token и token_type)')
+    @pytest.mark.ApiTest
+    @pytest.mark.Token
     def test_get_token(self):
         token = self.APP.api_token.get_token()
 
@@ -17,6 +21,8 @@ class TestToken(ApiBase):
         assert token['token_type'] != ''
 
     @allure.title('Получение токена для пользователя test_user09 и test_Boss01')
+    @pytest.mark.ApiTest
+    @pytest.mark.Token
     def test_get_token_test_user9(self):
         self.APP.api_token.get_token('test_user09')
         user = self.APP.api_users.get_users_profile()

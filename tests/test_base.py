@@ -1,4 +1,6 @@
 import time
+import allure
+
 from FW.application_manager import ApplicationManager
 
 
@@ -10,10 +12,10 @@ class TestBase:
         self.APP.main_page.open_main_page('https://ya.ru/')
 
     def teardown_method(self):
-        time.sleep(2)
+        self.APP.main_page.allure_screenshot()
 
     def setup_class(self):
-        pass
+        print('setup class')
 
     def teardown_class(self):
         self.APP.stop_driver()

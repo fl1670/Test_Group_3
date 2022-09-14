@@ -1,4 +1,6 @@
-from Tests.test_base import TestBase
+import allure
+
+from tests.test_base import TestBase
 
 
 class ApiBase(TestBase):
@@ -14,5 +16,4 @@ class ApiBase(TestBase):
 
     def teardown_class(self):
         pass
-
 
