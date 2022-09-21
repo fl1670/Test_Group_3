@@ -22,4 +22,5 @@ class Token(ApiBaseFw):
         self.manager.settings.access_token = response['access_token']
         self.manager.settings.token_type = response['token_type']
 
+        self.request_log('POST', url, '', headers, body, response)
         return response

@@ -22,3 +22,15 @@ class BaseFW:
             allure.attach(self.get_driver().get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
         except Exception as e:
             print(str(e))
+
+    @allure.step('send_keys')
+    def send_keys(self, locator, text):
+        self.get_driver().find_element(locator[0], locator[1]).send_keys(text)
+
+    @allure.step('click')
+    def click(self, locator):
+        self.get_driver().find_element(locator[0], locator[1]).click()
+
+    @allure.step('get_text')
+    def get_text(self, locator):
+        return self.get_driver().find_element(locator[0], locator[1]).text

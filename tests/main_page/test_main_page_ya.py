@@ -13,9 +13,12 @@ class TestMainPageYa(TestBase):
     @pytest.mark.WebTest
     @pytest.mark.YaRu
     def test_temp_1(self):
-        self.APP.main_page.send_keys_in_search_input('Test 12312312')
-        self.APP.main_page.click_btn_submit()
-        self.APP.search.get_text_title()
+        main_page = self.APP.main_page
+        main_page.send_keys_in_search_input('Test 12312312')
+        main_page.click_btn_submit()
+
+        search = self.APP.search
+        search.get_text_title()
 
     @allure.title('Проверка кнопки Найти (Test #2)')
     @pytest.mark.WebTest
@@ -28,8 +31,8 @@ class TestMainPageYa(TestBase):
     @pytest.mark.WebTest
     @pytest.mark.YaRu
     def test_temp_3(self):
-        self.APP.main_page.send_keys_in_search_input('Погода')
-        self.APP.main_page.click_btn_submit()
+        main_page = self.APP.main_page
+        main_page.send_keys_in_search_input('Погода').click_btn_submit()
 
     @allure.title('Тест получения погоды')
     @pytest.mark.WebTest
