@@ -24,3 +24,22 @@ class Token(ApiBaseFw):
 
         self.request_log('POST', url, '', headers, body, response)
         return response
+
+    @allure.step('Получение токена пользователя')
+    def get_token_user_id_and_secret(self, user_id, secret):
+
+        url = f'{self.manager.settings.url_auth}/connect/token'
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        body = {
+            'grant_type': 'client_credentials',
+            'client_id': user_id,
+            'client_secret': secret,
+        }
+
+        response = requests.post(url, headers=headers, data=body, params=None)
+        response = response.json()
+        self.manager.settings.access_token = response['access_token']
+        self.manager.settings.token_type = response['token_type']
+
+        self.request_log('POST', url, '', headers, body, response)
+        return response

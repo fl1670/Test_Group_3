@@ -10,7 +10,7 @@ class Locator:
     text_weather = (By.XPATH, '//div[@class="informers3"]/a[1]')
 
 
-class MainPage(AnyPage):
+class MainPageYa(AnyPage):
 
     @allure.step('Ввод текста в строку поиска')
     def send_keys_in_search_input(self, text):

@@ -1,5 +1,7 @@
 import allure
 from allure_commons.types import AttachmentType
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BaseFW:
@@ -34,3 +36,11 @@ class BaseFW:
     @allure.step('get_text')
     def get_text(self, locator):
         return self.get_driver().find_element(locator[0], locator[1]).text
+
+    def find_element(self, locator):
+        try:
+            web_element = WebDriverWait(self.get_driver(), 10).until(EC.presence_of_element_located(locator))
+            return web_element
+        except:
+            self.allure_screenshot()
+            raise

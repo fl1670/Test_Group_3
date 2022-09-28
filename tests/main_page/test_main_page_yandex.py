@@ -1,5 +1,6 @@
 import allure
 import pytest
+from selenium.webdriver import Keys
 
 from tests.test_base import TestBase
 
@@ -10,25 +11,19 @@ from tests.test_base import TestBase
 class TestMainPageYandex(TestBase):
 
     def setup_method(self):
-        self.APP.main_page.open_main_page('https://yandex.ru/')
+        self.APP.main_page_yandex.open_main_page('https://yandex.ru/')
 
-    @allure.title('Проверка кнопки Найти (Test #1)')
-    @pytest.mark.WebTest
-    @pytest.mark.YandexRu
-    def test_temp_1(self):
-        self.APP.main_page.send_keys_in_search_input('Test')
-        self.APP.main_page.click_btn_submit()
-
-    @allure.title('Проверка кнопки Найти (Test #2)')
-    @pytest.mark.WebTest
-    @pytest.mark.YandexRu
-    def test_temp_2(self):
-        self.APP.main_page.send_keys_in_search_input('qwerty')
-        self.APP.main_page.click_btn_submit()
+    data_2 = [
+        ('Test'),
+        ('qwerty'),
+        ('Погода'),
+    ]
 
     @allure.title('Тест получения погоды')
     @pytest.mark.WebTest
     @pytest.mark.YandexRu
-    def test_temp_3(self):
-        self.APP.main_page.send_keys_in_search_input('Погода')
-        self.APP.main_page.click_btn_submit()
+    @pytest.mark.parametrize("search_input", data_2)
+    def test_parametrize(self, search_input):
+        self.APP.main_page_yandex.send_keys_in_search_input(search_input)
+        self.APP.main_page_yandex.send_keys_in_search_input(Keys.ENTER)
+

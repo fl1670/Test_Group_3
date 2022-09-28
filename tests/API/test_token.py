@@ -20,14 +20,23 @@ class TestToken(ApiBase):
         assert token['access_token'] != ''
         assert token['token_type'] != ''
 
-    @allure.title('Получение токена для пользователя test_user09 и test_Boss01')
+    data = [
+        ('test_user09', 'testuser09'),
+        ('test_Boss01', 'testboss01'),
+        ('test_Boss02', 'testboss02'),
+        ('test_Boss03', 'testboss03'),
+        ('test_user09', 'qwertytyu'),
+        ('test_user01', 'testuser01'),
+        ('test_user02', 'testuser02'),
+        ('test_user03', 'testuser03'),
+        ('test_user04', 'testuser04'),
+    ]
+
     @pytest.mark.ApiTest
     @pytest.mark.Token
-    def test_get_token_test_user9(self):
-        self.APP.api_token.get_token('test_user09')
+    @allure.title('Получение токена для пользователя test_user09 и test_Boss01')
+    @pytest.mark.parametrize("user_name, user_login", data)
+    def test_get_token_parametrize(self, user_name, user_login):
+        self.APP.api_token.get_token(user_name)
         user = self.APP.api_users.get_users_profile()
-        assert user['login'] == 'testuser09'
-
-        self.APP.api_token.get_token('test_Boss01')
-        user = self.APP.api_users.get_users_profile()
-        assert user['login'] == 'testboss01'
+        assert user['login'] == user_login
