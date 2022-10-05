@@ -1,5 +1,3 @@
-import allure
-
 from tests.test_base import TestBase
 
 

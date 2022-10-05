@@ -39,8 +39,14 @@ class BaseFW:
 
     def find_element(self, locator):
         try:
-            web_element = WebDriverWait(self.get_driver(), 10).until(EC.presence_of_element_located(locator))
-            return web_element
+            return WebDriverWait(self.get_driver(), 10).until(EC.presence_of_element_located(locator))
+        except:
+            self.allure_screenshot()
+            raise
+
+    def find_elements(self, locator):
+        try:
+            return WebDriverWait(self.get_driver(), 10).until(EC.presence_of_all_elements_located(locator))
         except:
             self.allure_screenshot()
             raise

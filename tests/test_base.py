@@ -1,6 +1,3 @@
-import time
-import allure
-
 from FW.application_manager import ApplicationManager
 
 

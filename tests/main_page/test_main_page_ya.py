@@ -42,3 +42,16 @@ class TestMainPageYa(TestBase):
         text_weather = test_main_page.get_text_weather().replace('°', '')
 
         assert int(text_weather) > 0
+
+
+    def test_get_web_elements_in_search(self):
+        self.APP.main_page_ya.send_keys_in_search_input('test')
+        self.APP.main_page_ya.click_btn_submit()
+        web_elements = self.APP.search.get_web_elements_in_search()
+        text = []
+        for element in web_elements:
+            text.append(element.text)
+
+        print(text)
+
+
